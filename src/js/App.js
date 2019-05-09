@@ -2,13 +2,13 @@ import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import tetrisApp from './reducers';
-import GameInitializer from './GameInitializer';
+import TetrisGame from './TetrisGame';
 
 export const store = createStore(tetrisApp);
 
 const App = () => (
     <Provider store={store}>
-		<GameInitializer/>
+        <TetrisGame/>
 	</Provider>
 );
 

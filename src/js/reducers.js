@@ -1,17 +1,20 @@
 import { combineReducers } from 'redux';
 import * as actions from './actions';
 
-function gameInitializer(state = [], action) {
+function isStarted(state = false, action) {
+
+    console.log(state)
+
 	switch (action.type) {
 	case actions.START_GAME:
-		return state;
+		return true;
 	default:
 		return state;
-	}
+    }
 }
 
 const tetrisApp = combineReducers({
-	gameInitializer,
+	isStarted,
 });
 
 export default tetrisApp;
