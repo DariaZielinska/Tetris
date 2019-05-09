@@ -1,13 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import tetrisApp from './reducers';
+import GameInitializer from './GameInitializer';
 
-class App extends React.Component {
-    render() {
-        return (
-            <div>
-                <h1>Tetris</h1>
-            </div>
-        );
-    }
-}
+export const store = createStore(tetrisApp);
+
+const App = () => (
+    <Provider store={store}>
+		<GameInitializer/>
+	</Provider>
+);
 
 export default App
+
