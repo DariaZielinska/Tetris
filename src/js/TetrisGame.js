@@ -1,7 +1,30 @@
 import React from 'react';
 import GameInitializer from './GameInitializer';
+import GameField from './GameField';
+import Timer from './Timer';
+
+const GameState = {
+    READY: 'ready',
+    STARTED: 'started',
+    PAUSED: 'paused',
+    OVER: 'over',
+}
 
 class TetrisGame extends React.Component {
+    constructor(){
+        super()
+        
+        this.state = {
+            gameState: GameState.READY,
+        }
+
+        this.timer = new Timer(function(){
+            console.log('sec');
+        });
+
+        this.timer.startCount()
+    }
+
     render(){
         return (
             <div>
@@ -19,38 +42,6 @@ class TetrisGame extends React.Component {
                 <GameField/>
             </div>
         )
-    }
-}
-
-const CELL_SIZE = 40;
-const WIDTH = 400;
-const HEIGHT = 800;
-
-class GameField extends React.Component{
-    constructor(){
-        super()
-        this.rows = HEIGHT / CELL_SIZE;
-        this.cols = WIDTH / CELL_SIZE;
-        this.field = this.generateEmptyBoard();
-    }
-
-    generateEmptyBoard() {
-        let field = [];
-        for (let i = 0; i < this.rows; i++) {
-          field[i] = [];
-          for (let j = 0; j < this.cols; j++) {
-            field[i][j] = [];
-            field[i][j].push(<div className={'game_field'} key={i}></div>)
-          }
-        }
-        return field;
-    } 
-
-    render(){
-        return (<div className={"game_board"}
-        style={{ width: WIDTH, height: HEIGHT }}>
-            {this.field}
-        </div>)
     }
 }
 
